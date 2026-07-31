@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="BenchVectorLabs — engineering, software, embedded systems and simulation."
+    >
+
+    <title>BenchVectorLabs</title>
+
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: #edf4f7;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(0, 190, 210, 0.14),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #071014,
+                    #101b22
+                );
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: auto;
+            padding: 28px 24px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .logo span {
+            color: #63dce8;
+        }
+
+        nav a {
+            margin-left: 24px;
+            color: #aabac2;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+            max-width: 1100px;
+            min-height: calc(100vh - 100px);
+            margin: auto;
+            padding: 64px 24px 120px;
+        }
+
+        .hero {
+            max-width: 780px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin-bottom: 18px;
+            color: #63dce8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(3rem, 9vw, 6.8rem);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+        }
+
+        h1 span {
+            display: block;
+            color: #63dce8;
+        }
+
+        .intro {
+            max-width: 650px;
+            margin: 28px auto;
+            color: #aabac2;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 36px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 22px;
+            border: 1px solid #63dce8;
+            border-radius: 6px;
+            color: #061013;
+            background: #63dce8;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .button.secondary {
+            color: #dce8ec;
+            background: transparent;
+            border-color: #40525b;
+        }
+
+        .topics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 70px;
+        }
+
+        .topic {
+            padding: 18px;
+            border: 1px solid #263740;
+            border-radius: 8px;
+            color: #b8c7cd;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                display: none;
+            }
+
+            .topics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            BenchVector<span>Labs</span>
+        </div>
+
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="https://github.com/BenchVectorLabs">GitHub</a>
+            <a href="#">YouTube</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="eyebrow">
+                Engineering · Software · Embedded · Simulation
+            </div>
+
+            <h1>
+                Build.
+                <span>Simulate.</span>
+                Understand.
+            </h1>
+
+            <p class="intro">
+                BenchVectorLabs explores the intersection of electrical
+                engineering, software development, embedded systems and
+                technical simulation.
+            </p>
+
+            <div class="buttons">
+                <a
+                    class="button"
+                    href="https://github.com/BenchVectorLabs"
+                >
+                    Explore projects
+                </a>
+
+                <a
+                    class="button secondary"
+                    href="#projects"
+                >
+                    About the lab
+                </a>
+            </div>
+
+            <div class="topics" id="projects">
+                <div class="topic">Power systems</div>
+                <div class="topic">Embedded systems</div>
+                <div class="topic">Software</div>
+                <div class="topic">Simulation</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+Create initial BenchVectorLabs website
