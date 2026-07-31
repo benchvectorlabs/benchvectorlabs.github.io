@@ -1,233 +1,292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="BenchVectorLabs — engineering, software, embedded systems and simulation."
-    >
-
-    <title>BenchVectorLabs</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BenchVectorLabs utvecklar projekt inom engineering, embedded systems, mjukvara och simulering. Läs om prototypen BreakerLab.">
+    <title>BenchVectorLabs | Engineering, Embedded & Simulation</title>
     <style>
         :root {
             color-scheme: dark;
-            font-family:
-                Inter,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
+            --bg: #071014;
+            --panel: rgba(255,255,255,.035);
+            --line: #263840;
+            --text: #edf5f7;
+            --muted: #9fb0b7;
+            --accent: #69dbe8;
+            --accent-soft: rgba(105,219,232,.12);
+            --max-width: 1120px;
         }
-
-        * {
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            min-height: 100vh;
             margin: 0;
-            color: #edf4f7;
+            min-height: 100vh;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
             background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(0, 190, 210, 0.14),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    135deg,
-                    #071014,
-                    #101b22
-                );
+                radial-gradient(circle at 18% 12%, rgba(43,184,203,.14), transparent 34%),
+                radial-gradient(circle at 80% 70%, rgba(29,99,115,.12), transparent 32%),
+                linear-gradient(135deg, #061014, #0b151a 55%, #081115);
         }
-
+        a { color: inherit; }
         header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            background: rgba(7,16,20,.82);
+            backdrop-filter: blur(16px);
+        }
+        .nav {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            max-width: 1100px;
-            margin: auto;
-            padding: 28px 24px;
+            justify-content: space-between;
+            width: min(calc(100% - 40px), var(--max-width));
+            margin: 0 auto;
+            padding: 18px 0;
         }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-        }
-
-        .logo span {
-            color: #63dce8;
-        }
-
-        nav a {
-            margin-left: 24px;
-            color: #aabac2;
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: .03em;
             text-decoration: none;
         }
-
-        nav a:hover {
-            color: #ffffff;
-        }
-
-        main {
+        .brand span { color: var(--accent); }
+        nav { display: flex; gap: 24px; }
+        nav a { color: var(--muted); font-size: .95rem; text-decoration: none; }
+        nav a:hover { color: var(--text); }
+        main { width: min(calc(100% - 40px), var(--max-width)); margin: 0 auto; }
+        .hero {
             display: grid;
             place-items: center;
-            max-width: 1100px;
-            min-height: calc(100vh - 100px);
-            margin: auto;
-            padding: 64px 24px 120px;
-        }
-
-        .hero {
-            max-width: 780px;
+            min-height: 78vh;
+            padding: 96px 0 72px;
             text-align: center;
         }
-
+        .hero-inner { max-width: 820px; }
         .eyebrow {
-            margin-bottom: 18px;
-            color: #63dce8;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .18em;
             text-transform: uppercase;
         }
-
         h1 {
             margin: 0;
-            font-size: clamp(3rem, 9vw, 6.8rem);
-            line-height: 0.95;
-            letter-spacing: -0.06em;
+            font-size: clamp(3.4rem, 10vw, 7rem);
+            line-height: .94;
+            letter-spacing: -.065em;
         }
-
-        h1 span {
-            display: block;
-            color: #63dce8;
+        h1 span { display: block; color: var(--accent); }
+        .hero p {
+            max-width: 670px;
+            margin: 28px auto 0;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            line-height: 1.75;
         }
-
-        .intro {
-            max-width: 650px;
-            margin: 28px auto;
-            color: #aabac2;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            line-height: 1.7;
-        }
-
-        .buttons {
+        .actions {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 14px;
             margin-top: 36px;
         }
-
         .button {
-            display: inline-block;
-            padding: 13px 22px;
-            border: 1px solid #63dce8;
-            border-radius: 6px;
-            color: #061013;
-            background: #63dce8;
-            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 22px;
+            border: 1px solid var(--accent);
+            border-radius: 7px;
+            color: #061014;
+            background: var(--accent);
+            font-weight: 800;
             text-decoration: none;
+            transition: transform .2s ease;
         }
-
-        .button.secondary {
-            color: #dce8ec;
-            background: transparent;
-            border-color: #40525b;
+        .button:hover { transform: translateY(-2px); }
+        .button.secondary { color: var(--text); background: transparent; border-color: var(--line); }
+        .section { padding: 72px 0; }
+        .section-heading { max-width: 720px; margin-bottom: 32px; }
+        .section-heading small {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
         }
-
-        .topics {
+        h2 {
+            margin: 10px 0 14px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: -.04em;
+        }
+        .section-heading p, .project-text p { color: var(--muted); line-height: 1.75; }
+        .project-card {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-top: 70px;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 34px;
+            padding: 34px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgba(105,219,232,.06), rgba(255,255,255,.02));
+            box-shadow: 0 18px 60px rgba(0,0,0,.18);
         }
-
+        .project-badge {
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 7px 10px;
+            border: 1px solid rgba(105,219,232,.28);
+            border-radius: 999px;
+            color: var(--accent);
+            background: var(--accent-soft);
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .project-text h3 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            letter-spacing: -.04em;
+        }
+        .project-text p { max-width: 680px; margin: 18px 0 0; }
+        .feature-list { display: grid; gap: 12px; align-content: start; }
+        .feature {
+            padding: 16px 18px;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 9px;
+            background: rgba(255,255,255,.025);
+        }
+        .feature strong { display: block; margin-bottom: 4px; }
+        .feature span { color: var(--muted); font-size: .93rem; line-height: 1.5; }
+        .topics { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
         .topic {
-            padding: 18px;
-            border: 1px solid #263740;
-            border-radius: 8px;
-            color: #b8c7cd;
-            background: rgba(255, 255, 255, 0.025);
+            min-height: 145px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--panel);
         }
-
-        @media (max-width: 700px) {
-            nav {
-                display: none;
-            }
-
-            .topics {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .topic h3 { margin: 0 0 10px; font-size: 1.05rem; }
+        .topic p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+        footer {
+            width: min(calc(100% - 40px), var(--max-width));
+            margin: 0 auto;
+            padding: 36px 0 42px;
+            border-top: 1px solid rgba(255,255,255,.07);
+            color: var(--muted);
+            font-size: .9rem;
+        }
+        @media (max-width: 800px) {
+            nav { display: none; }
+            .hero { min-height: auto; padding: 92px 0 60px; }
+            .project-card { grid-template-columns: 1fr; padding: 26px; }
+            .topics { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width: 520px) {
+            .topics { grid-template-columns: 1fr; }
+            .actions { flex-direction: column; }
+            .button { width: 100%; }
         }
     </style>
 </head>
-
 <body>
     <header>
-        <div class="logo">
-            BenchVector<span>Labs</span>
+        <div class="nav">
+            <a class="brand" href="#top">BenchVector<span>Labs</span></a>
+            <nav aria-label="Huvudmeny">
+                <a href="#breakerlab">BreakerLab</a>
+                <a href="#areas">Områden</a>
+                <a href="https://github.com/BenchVectorLabs">GitHub</a>
+            </nav>
         </div>
-
-        <nav>
-            <a href="#projects">Projects</a>
-            <a href="https://github.com/BenchVectorLabs">GitHub</a>
-            <a href="#">YouTube</a>
-        </nav>
     </header>
 
-    <main>
+    <main id="top">
         <section class="hero">
-            <div class="eyebrow">
-                Engineering · Software · Embedded · Simulation
+            <div class="hero-inner">
+                <div class="eyebrow">Engineering · Software · Embedded · Simulation</div>
+                <h1>Build.<span>Simulate.</span>Understand.</h1>
+                <p>
+                    BenchVectorLabs är ett personligt tekniklabb för projekt inom elkraft,
+                    mjukvaruutveckling, embedded systems och teknisk simulering.
+                </p>
+                <div class="actions">
+                    <a class="button" href="#breakerlab">Upptäck BreakerLab</a>
+                    <a class="button secondary" href="https://github.com/BenchVectorLabs">Visa på GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="breakerlab">
+            <div class="section-heading">
+                <small>Aktuell prototyp</small>
+                <h2>BreakerLab</h2>
             </div>
 
-            <h1>
-                Build.
-                <span>Simulate.</span>
-                Understand.
-            </h1>
+            <article class="project-card">
+                <div class="project-text">
+                    <span class="project-badge">Prototype in development</span>
+                    <h3>En flexibel brytarsimulator för reläprovning</h3>
+                    <p>
+                        BreakerLab är en prototyp för simulering och provning av
+                        högspänningsbrytares beteende tillsammans med reläskydd.
+                        Systemet kombinerar en Raspberry Pi-baserad simuleringsmotor
+                        med fysisk I/O via ESP32.
+                    </p>
+                    <p>
+                        Målet är att skapa en portabel och tydlig testplattform för
+                        bland annat trip, close, hjälpkontakter, lockout,
+                        återinkoppling och automatiserade provsekvenser.
+                    </p>
+                    <div class="actions" style="justify-content:flex-start;">
+                        <a class="button" href="https://github.com/BenchVectorLabs">Projekt på GitHub</a>
+                    </div>
+                </div>
 
-            <p class="intro">
-                BenchVectorLabs explores the intersection of electrical
-                engineering, software development, embedded systems and
-                technical simulation.
-            </p>
+                <div class="feature-list">
+                    <div class="feature">
+                        <strong>Breaker simulation</strong>
+                        <span>Simulerar brytartider, mellanläge och 52a/52b-signaler.</span>
+                    </div>
+                    <div class="feature">
+                        <strong>Protection testing</strong>
+                        <span>Stöd för trip, close, lockout 86 och återinkoppling 79.</span>
+                    </div>
+                    <div class="feature">
+                        <strong>Embedded I/O</strong>
+                        <span>ESP32-baserat gränssnitt för galvaniskt isolerade in- och utgångar.</span>
+                    </div>
+                    <div class="feature">
+                        <strong>Automated sequences</strong>
+                        <span>JSON-baserade testdefinitioner, händelselogik och säkra provsekvenser.</span>
+                    </div>
+                </div>
+            </article>
+        </section>
 
-            <div class="buttons">
-                <a
-                    class="button"
-                    href="https://github.com/BenchVectorLabs"
-                >
-                    Explore projects
-                </a>
-
-                <a
-                    class="button secondary"
-                    href="#projects"
-                >
-                    About the lab
-                </a>
+        <section class="section" id="areas">
+            <div class="section-heading">
+                <small>BenchVectorLabs</small>
+                <h2>Från kod till fysisk prototyp</h2>
+                <p>
+                    Projekten utforskar samspelet mellan verkliga signaler,
+                    modeller, styrlogik och användbara tekniska verktyg.
+                </p>
             </div>
 
-            <div class="topics" id="projects">
-                <div class="topic">Power systems</div>
-                <div class="topic">Embedded systems</div>
-                <div class="topic">Software</div>
-                <div class="topic">Simulation</div>
+            <div class="topics">
+                <article class="topic"><h3>Engineering</h3><p>Elkraft, reläskydd, mätteknik och praktisk konstruktion.</p></article>
+                <article class="topic"><h3>Software</h3><p>Python, webbgränssnitt, API:er och tekniska verktyg.</p></article>
+                <article class="topic"><h3>Embedded</h3><p>ESP32, fysisk I/O, kommunikation och prototyputveckling.</p></article>
+                <article class="topic"><h3>Simulation</h3><p>Modeller, testsekvenser och simulering av tekniska system.</p></article>
             </div>
         </section>
     </main>
+
+    <footer>© 2026 BenchVectorLabs · Engineering, software, embedded systems and simulation.</footer>
 </body>
 </html>
-
-Create initial BenchVectorLabs website
